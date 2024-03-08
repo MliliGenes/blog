@@ -2,21 +2,29 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "id", "comment", "post_id", "article_id", "user_id"
+        'user_id',
+        'post_id',
+        'article_id',
+        'comment',
     ];
-    public function user(): BelongsTo {
-        return $this->belongsTo(User::class);
-    }
-    public function commentable()
-    {
-        return $this->morphTo();
-    }
+
+//relation to user
+public function user()
+{
+    return $this->belongsTo(User::class);
+}
+
+
+//relation to post
+public function commenttable()
+{
+    return $this->morphTo();
+}
 }
